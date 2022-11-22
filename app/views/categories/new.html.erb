@@ -1,0 +1,18 @@
+<h1>Create a new category</h1>
+
+<%= render 'shared/errors', obj: @category %>
+
+<%= form_with(model: @category) do |f| %>
+  <p>
+    <%= f.label :name, "Category Name" %><br/>
+    <%=f.text_field :name, placeholder: "Enter Category Name" %>
+  </p>
+  <p>
+    <%=f.submit "Add Category" %>
+  </p>
+<% end %>
+
+<div>
+  <%= link_to ' [Cancel and return to articles listing ]', articles_path %>
+</div>
+

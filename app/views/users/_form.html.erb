@@ -1,4 +1,4 @@
-<%= render 'shared/errors', obj: @user %>
+<%#= render 'shared/errors', obj: @user %>
 
 <%= form_with(model: @user) do |f| %>
   <p>
@@ -14,6 +14,10 @@
     <%= f.password_field :password, placeholder: "Enter Password" %>
   </p>
   <p>
-    <%=f.submit %>
+    <%=f.submit(@user.new_record? ? "Sign Up": "Update account") %>
   </p>
 <% end %>
+
+<div>
+  <%= link_to ' [Cancel and return to articles listing ]', articles_path %>
+</div>

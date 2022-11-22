@@ -1,8 +1,12 @@
 <h1>Showing article details</h1>
-<h2>Title: <%=@article.title %></h2>
-<p>By: <%=@article.user.username if @article.user %></p>
-<p>Desc: <%=@article.description %></p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= button_to 'Delete', article_path(@article), method: :delete, onclick: "return confirm('Are you sure?')" %> |
+<h2>Title: <%= @article.title %></h2>
+<p>By: <%= @article.user.username if @article.user %></p>
+<p>Desc: <%= @article.description %></p>
+<%if @article.categories.any? %>
+<p>Categories: <%= render @article.categories %></p>
+<% end %>
+<% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= button_to 'Delete', article_path(@article), method: :delete, onclick: "return confirm('Are you sure?')" %> |
+<% end %>
 <%= link_to 'Return to all articles', articles_path %>
